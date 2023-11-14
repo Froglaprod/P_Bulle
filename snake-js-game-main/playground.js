@@ -7,8 +7,15 @@ export class Playground{
         this.ctx = canvas.getContext('2d');
      }
 
-    // Dessine le serpent à une position définit
-    drawSnake(snake)
+    // Dessine la tete du serpent à une position définit
+    drawSnakeHead(snake)
+    {
+          this.ctx.fillStyle = 'blue';
+          this.ctx.fillRect(snake.x, snake.y, snake.width, snake.height);
+    }
+
+    // Dessine le corps du serpent à une position définit
+    drawSnakeBody(snake)
     {
           this.ctx.fillStyle = 'blue';
           this.ctx.fillRect(snake.x, snake.y, snake.width, snake.height);

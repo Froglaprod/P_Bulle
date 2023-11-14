@@ -2,14 +2,11 @@ import '../css/style.css';
 import Snake from '../snake';
 import Playground from '../playground';
 
-//Direction de base du snake
-let direction ='Up';
-
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
 //Instantiation des objets
-let snake = new Snake(360, 360, 40, 40);
+let snake = new Snake(360, 360, 40, 40,'Up');
 let playground = new Playground(canvas);
 
 const move = () => {
@@ -19,37 +16,37 @@ const move = () => {
   ctx.fillRect(0, 0, 800, 800);
 
   //Affichage du snake
-  playground.drawSnake(snake);
+  playground.drawSnakeHead(snake);
   
 
 
 // Déplacement du snake par l'utilisateur
-window.addEventListener('keydown', handleKeyPress);
 function handleKeyPress(event) {
 
   //Entrer des touches et de la direction à accorder
   switch (event.key) {
 
     case 'w':
-    direction = 'Up'
+    snake.direction = 'Up'
       break;
 
     case 's':
-     direction = 'Down'
+      snake.direction = 'Down'
       break;
 
     case 'a':
-     direction = 'Left'
+      snake.direction = 'Left'
       break;
 
     case 'd':      
-    direction = 'Right'
+    snake.direction = 'Right'
       break;
   }
 }
+window.addEventListener('keydown', handleKeyPress);
 
 //Déplacement en fonction de la direction accorder
-switch (direction) {
+switch (snake.direction) {
 
  case 'Up':
  snake.moveUp();
@@ -67,10 +64,6 @@ switch (direction) {
  snake.moveRight();
    break;
 }
-
-
-
-
 
   // Rafraichit à chaque seconde
   setTimeout(() => {
