@@ -8,10 +8,10 @@ export class Playground{
      }
 
     // Dessine le serpent à une position définit
-    drawSnake()
+    drawSnake(snake)
     {
           this.ctx.fillStyle = 'blue';
-          this.ctx.fillRect(380, 380, 60, 60);
+          this.ctx.fillRect(snake.x, snake.y, snake.width, snake.height);
     }
 }
 
