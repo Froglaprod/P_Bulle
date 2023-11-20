@@ -10,13 +10,11 @@ export class Playground{
     // Dessine le snake
     drawSnake(snake, gridSize)
     {
-      //Décalagae entre chaque partie du corps
-     
           // Dessine la tete du serpent à une position définit
           this.ctx.fillStyle = 'green';
           this.ctx.fillRect(snake[0].x , snake[0].y , gridSize, gridSize);
-          // Dessine le corps du serpent à une position définit
 
+          // Dessine le corps du serpent à une position définit
           //Boucle qui permet de parourir chaque partie du serpent sauf la tete (slice(1))
           snake.slice(1).forEach(part => {
             this.ctx.fillStyle = 'yellow';

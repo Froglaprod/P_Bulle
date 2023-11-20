@@ -30,7 +30,9 @@
       
   for (let i = snake.length - 1; i > 0; i--) 
   {
+    //On donne a chaque partie du corps la position de la partie du corps qui la précède
     const updatePosition = { x: snake[i].x, y: snake[i].y };
+    
     snake[i].x = snake[i - 1].x;
     snake[i].y = snake[i - 1].y;
     snake[i - 1].x = updatePosition.x;
