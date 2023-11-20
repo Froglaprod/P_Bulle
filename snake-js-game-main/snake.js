@@ -1,46 +1,43 @@
  class Snake{
 
     //On donne les valeurs par défault de notre snake
-    constructor(x, y, width, height, direction)
+    constructor(width, height)
     {
-        //Postion x 
-        this.x = x;
-        //Postion y
-        this.y = y;
-        //Largeur
-        this.width = width;
-        //Hauteur
-        this.height = height;
-        //Direction
-        this.direction = direction;
+      this.width = width;
+      this.height = height;
     }
 
-    //On se décale à droite
-    moveLeft()
+    moveSnake(headSnake, direction, snake)
     {
-       this.x-= 40;
-    }
 
-     //On se décale à droite
-     moveRight()
-     {
-        this.x+= 40;
-     }
+   //Déplacement en fonction de la direction accorder
+switch (direction) {
 
-      //On se décale en bas
-      moveDown()
-      {
-         this.y+= 40;
+   case 'Up':
+      headSnake.y--;
+     break;
   
-      }
+   case 'Down':
+      headSnake.y++;
+     break;
+  
+   case 'Left':
+      headSnake.x--;
+     break;
+  
+   case 'Right':      
+   headSnake.x++;
+     break;
+  }
+  //Ajoute une nouvelle partie au début du tableau
+  snake.unshift(headSnake);
+ //Supprime la dernier partie du tableau
+  snake.pop();
 
-       //On se décale en haut
-     moveUp()
-     {
-        this.y-= 40;
-     }
- 
+    }
 
+   
+    
 }
 
 export default Snake;

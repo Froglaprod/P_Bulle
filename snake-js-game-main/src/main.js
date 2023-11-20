@@ -5,19 +5,21 @@ import Playground from '../playground';
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
+//Position x et y de la tete du snake 
+const headSnake ={x:0, y:0};
+//Position x et y de chaque partie du corp du snake
+const snake =[
+  {x:headSnake.x, y:headSnake.y},
+  {x:headSnake.x, y:headSnake.y}
+];
+//Dimension d'une case de notre grilless
+const grideSize = 60;
+//Direction du snake
+let direction ='Right';
+
 //Instantiation des objets
-let snake = new Snake(360, 360, 40, 40,'Up');
 let playground = new Playground(canvas);
-
-const move = () => {
-
-  // Dessine la grille de jeu
-  ctx.fillStyle = 'black';
-  ctx.fillRect(0, 0, 800, 800);
-
-  //Affichage du snake
-  playground.drawSnakeHead(snake);
-  
+let snakeclass = new Snake(60, 60);
 
 
 // Déplacement du snake par l'utilisateur
@@ -27,43 +29,35 @@ function handleKeyPress(event) {
   switch (event.key) {
 
     case 'w':
-    snake.direction = 'Up'
+    direction = 'Up'
       break;
 
     case 's':
-      snake.direction = 'Down'
+      direction = 'Down'
       break;
 
     case 'a':
-      snake.direction = 'Left'
+      direction = 'Left'
       break;
 
     case 'd':      
-    snake.direction = 'Right'
+    direction = 'Right'
       break;
   }
 }
+
+const move = () => {
+
+  // Dessine la grille de jeu
+  ctx.fillStyle = 'black';
+  ctx.fillRect(0, 0, 800, 800);
+
+  //Déplacement du snake
+  snakeclass.moveSnake(headSnake, direction, snake);
+  //Affichage du snake
+  playground.drawSnake(snake, grideSize);
+
 window.addEventListener('keydown', handleKeyPress);
-
-//Déplacement en fonction de la direction accorder
-switch (snake.direction) {
-
- case 'Up':
- snake.moveUp();
-   break;
-
- case 'Down':
- snake.moveDown();
-   break;
-
- case 'Left':
-   snake.moveLeft();
-   break;
-
- case 'Right':      
- snake.moveRight();
-   break;
-}
 
   // Rafraichit à chaque seconde
   setTimeout(() => {
@@ -71,7 +65,5 @@ switch (snake.direction) {
   }, 1000);
 
 };
-
- 
 
 requestAnimationFrame(move);

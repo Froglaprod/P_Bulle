@@ -7,19 +7,24 @@ export class Playground{
         this.ctx = canvas.getContext('2d');
      }
 
-    // Dessine la tete du serpent à une position définit
-    drawSnakeHead(snake)
+    // Dessine le snake
+    drawSnake(snake, grideSize)
     {
-          this.ctx.fillStyle = 'blue';
-          this.ctx.fillRect(snake.x, snake.y, snake.width, snake.height);
+
+          // Dessine la tete du serpent à une position définit
+          this.ctx.fillStyle = 'green';
+          this.ctx.fillRect(snake[0].x , snake[0].y , grideSize, grideSize);
+
+          // Dessine le corps du serpent à une position définit
+         
+          this.snake.forEach(element => {
+            this.ctx.fillStyle = 'yellow';
+            this.ctx.fillRect(element.x , element.y , grideSize, grideSize);
+          });
+            
     }
 
-    // Dessine le corps du serpent à une position définit
-    drawSnakeBody(snake)
-    {
-          this.ctx.fillStyle = 'blue';
-          this.ctx.fillRect(snake.x, snake.y, snake.width, snake.height);
-    }
+    
 }
 
 export default Playground;
