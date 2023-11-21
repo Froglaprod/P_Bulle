@@ -57,7 +57,21 @@ snake[0].y = positionHead.y;
     }
     return false;
   }
-  
+
+  // Vérifie si la tete du snake touche une partie de son corps
+  toucheBody(headSnake, snake) 
+  {
+    //Boucle qui parcours chaque partie du corps
+    for (let i = 0; i < snake.length; i++) 
+    {
+      //On vérifie la position de chaque partie du corps par apport a la tete
+      if (headSnake.x === snake[i].x && headSnake.y === snake[i].y)
+      {
+        return true;
+      }
+    }
+    return false;
+  }
 }
 
 export default Snake;
