@@ -70,11 +70,13 @@ snake[0].y = positionHead.y;
   }
 
   // Vérifie si la tete du snake mange la pomme
-  eatApple(applePosition, headSnake)
+  eatApple(applePosition, headSnake, snake)
   {
     //On vérifi si la position de la tete est égal a la postion de la pomme
     if (headSnake.x == applePosition.x && headSnake.y === applePosition.y) 
     {
+      //Ajout d'une nouvelle partie au corps du snake
+      snake.push({ x: headSnake.x, y: headSnake.y });
       return true;
     }
     return false;

@@ -23,7 +23,7 @@ let gameOver1 = false;
 let spawnApple = true;
 //Instantiation des objets
 let playground = new Playground(canvas);
-let snakeclass = new Snake(3, 500);
+let snakeclass = new Snake(3, 120);
 let apple = new Apple();
 
 //Boucle qui creer les partie du corps du snake
