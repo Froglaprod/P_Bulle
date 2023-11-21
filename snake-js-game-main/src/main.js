@@ -1,7 +1,7 @@
 import '../css/style.css';
-import Snake from '../snake';
-import Playground from '../playground';
-
+import Snake from '/src/snake';
+import Playground from '/src/playground';
+import Apple from '/src/apple';
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
@@ -9,6 +9,8 @@ const ctx = canvas.getContext('2d');
 const headSnake = {x:0, y:0 };
 //Tableau qui stock chaque partie du corps du snake
 const snake = [];
+//Position de la pomme
+let applePosition = { x: 0, y: 0 };
 //Dimension d'une case de notre grilless
 const gridSize = 40;
 //Direction du snake
@@ -17,13 +19,15 @@ let direction ='Right';
 let gameOver = false;
 //Savoir si on perd la partie
 let gameOver1 = false;
-
+//Savoir si on spawn une pomme
+let spawnApple = true;
 //Instantiation des objets
 let playground = new Playground(canvas);
-let snakeclass = new Snake(40, 40);
+let snakeclass = new Snake(3, 500);
+let apple = new Apple();
 
 //Boucle qui creer les partie du corps du snake
-for (let i = 0; i < 9; i++) {
+for (let i = 0; i < snakeclass.numBody; i++) {
   // Ajout une partie du corps et retourne la nouvelle taille du snake
   snake.push({ x: headSnake.x, y: headSnake.y });
 }
@@ -63,13 +67,23 @@ function handleKeyPress(event) {
   }
 }
 
+// Terrain de jeux
 const move = () => {
 
   // Dessine la grille de jeu
   ctx.fillStyle = 'black';
   ctx.fillRect(0, 0, 800, 800);
 
-//Action
+//Vérifie si le snake mange la pomme
+spawnApple = snakeclass.eatApple(headSnake, applePosition, snake, spawnApple);
+
+//Si le snake mange la pomme on la fait spawn a une nouvelle position
+if(spawnApple)
+{
+//Donne des coordonnées aléatoire a notre pomme
+applePosition = apple.randomPosition(gridSize, applePosition);
+spawnApple = false;
+}
 
   //Déplacement du snake
   snakeclass.moveSnake(headSnake, direction, snake, gridSize);
@@ -79,7 +93,8 @@ const move = () => {
   gameOver1 = snakeclass.toucheBody(headSnake, snake);
   //Affichage du snake
   playground.drawSnake(snake, gridSize);
-  console.log(gameOver);
+  //Affichage de la pomme
+  playground.drawApple(applePosition, gridSize);
   // Si le jeu est fini on affiche game over et on stop le jeu
 if(gameOver || gameOver1)
 {
@@ -96,7 +111,7 @@ window.addEventListener('keydown', handleKeyPress);
   // Rafraichit à chaque seconde
   setTimeout(() => {
     requestAnimationFrame(move);
-  }, 1000);
+  }, snakeclass.speed);
 
 };
 

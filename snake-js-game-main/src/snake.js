@@ -1,15 +1,15 @@
 class Snake{
 
   //On donne les valeurs par défault de notre snake
-  constructor(width, height)
+  constructor(numBody, speed)
   {
-    this.width = width;
-    this.height = height;
+    this.speed = speed;
+    this.numBody = numBody;
   }
 
   moveSnake(headSnake, direction, snake, gridSize)
   {
-    //On stocke la position de la tete du snake
+    //On stock la position de la tete du snake
     const positionHead = { x: headSnake.x, y: headSnake.y };
   
     switch (direction) {
@@ -27,7 +27,6 @@ class Snake{
         break;
     }
 
-  
   // Boucle qui parcours chaque partie du corps du snake sauf la tete
 for (let i = snake.length - 1; i > 0; i--) 
 {
@@ -37,12 +36,9 @@ for (let i = snake.length - 1; i > 0; i--)
   // On déplace chaque partie du corps à la position de la partie précédente
   snake[i].x = snake[i - 1].x;
   snake[i].y = snake[i - 1].y;
-  // On met a jour les partie précédente part la position de base du corps
-  snake[i - 1].x = updatePosition.x;
-  snake[i - 1].y = updatePosition.y;
 }
 
-// On remetla postion de la tete à sa position actuel
+// On remet la postion de la tete à sa position actuel
 snake[0].x = positionHead.x;
 snake[0].y = positionHead.y;
   }
@@ -65,10 +61,21 @@ snake[0].y = positionHead.y;
     for (let i = 0; i < snake.length; i++) 
     {
       //On vérifie la position de chaque partie du corps par apport a la tete
-      if (headSnake.x === snake[i].x && headSnake.y === snake[i].y)
+      if (headSnake.x == snake[i].x && headSnake.y == snake[i].y)
       {
         return true;
       }
+    }
+    return false;
+  }
+
+  // Vérifie si la tete du snake mange la pomme
+  eatApple(applePosition, headSnake)
+  {
+    //On vérifi si la position de la tete est égal a la postion de la pomme
+    if (headSnake.x == applePosition.x && headSnake.y === applePosition.y) 
+    {
+      return true;
     }
     return false;
   }

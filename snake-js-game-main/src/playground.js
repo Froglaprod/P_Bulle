@@ -1,4 +1,4 @@
-export class Playground{
+class Playground{
      
   //On définit le context de dessin pour nos affichage
      constructor(canvas)
@@ -16,11 +16,20 @@ export class Playground{
 
           // Dessine le corps du serpent à une position définit
           //Boucle qui permet de parourir chaque partie du serpent sauf la tete (slice(1))
-          snake.slice(1).forEach(part => {
-            this.ctx.fillStyle = 'yellow';
-            this.ctx.fillRect(part.x , part.y , gridSize, gridSize);
-          });
+for(let i = 1; i < snake.length; i++) 
+  {
+    this.ctx.fillStyle = 'yellow';
+    this.ctx.fillRect(snake[i].x , snake[i].y , gridSize, gridSize);
+  }
             
+    }
+
+    // Dessine la pomme
+    drawApple(applePosition, gridSize)
+    {
+      // Dessine la pomme à une position aléatoire
+      this.ctx.fillStyle = 'red';
+      this.ctx.fillRect(applePosition.x , applePosition.y , gridSize, gridSize);
     }
 
     // Dessine game over
@@ -31,7 +40,6 @@ export class Playground{
       this.ctx.font = '50px Arial';
       this.ctx.fillText('Game Over', 270, 380);
     }
-
 
     
 }
