@@ -23,6 +23,16 @@ export class Playground{
             
     }
 
+    // Dessine game over
+    drawGameOver()
+    {
+      // Si le jeu est fini on affiche game over
+      this.ctx.fillStyle = 'Red';
+      this.ctx.font = '50px Arial';
+      this.ctx.fillText('Game Over', 270, 380);
+    }
+
+
     
 }
 
