@@ -1,5 +1,5 @@
 class Playground{
-     
+
   //On définit le context de dessin pour nos affichage
      constructor(canvas)
      {
@@ -25,11 +25,10 @@ for(let i = 1; i < snake.length; i++)
     }
 
     // Dessine la pomme
-    drawApple(applePosition, gridSize)
+    drawApple(applePosition, gridSize, appleImage)
     {
-      // Dessine la pomme à une position aléatoire
-      this.ctx.fillStyle = 'red';
-      this.ctx.fillRect(applePosition.x , applePosition.y , gridSize, gridSize);
+      // Affiche l'image de la pomme à une position aléatoire
+      this.ctx.drawImage(appleImage,applePosition.x , applePosition.y , gridSize, gridSize);
     }
 
     // Dessine game over

@@ -23,10 +23,19 @@ let gameOver = false;
 let gameOver1 = false;
 //Savoir si on spawn une pomme
 let spawnApple = true;
+
 //Instantiation des objets
+// Le playground
 let playground = new Playground(canvas);
+// Le serpent
 let snakeclass = new Snake(3, 120);
+// La pomme
 let apple = new Apple();
+// Image de la pomme
+let appleImage = new Image();
+
+// Chemin de l'image
+appleImage.src = '/image/apple1.png';
 
 //Boucle qui creer les partie du corps du snake
 for (let i = 0; i < snakeclass.numBody; i++) {
@@ -100,7 +109,7 @@ spawnApple = false;
   //Affichage du snake
   playground.drawSnake(snake, gridSize);
   //Affichage de la pomme
-  playground.drawApple(applePosition, gridSize);
+  playground.drawApple(applePosition, gridSize, appleImage);
   // Si le jeu est fini on affiche game over et on stop le jeu
 if(gameOver || gameOver1)
 {
