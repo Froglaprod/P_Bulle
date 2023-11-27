@@ -12,6 +12,8 @@ const snake = [];
 //Position de la pomme
 let applePosition = { x: 0, y: 0 };
 //Dimension d'une case de notre grilless
+// Score de la partie
+let scoreGame = -1;
 const gridSize = 40;
 //Direction du snake
 let direction ='Right';
@@ -75,7 +77,9 @@ const move = () => {
   ctx.fillRect(0, 0, 800, 800);
 
 //Vérifie si le snake mange la pomme
-spawnApple = snakeclass.eatApple(headSnake, applePosition, snake, spawnApple);
+spawnApple = snakeclass.eatApple(headSnake, applePosition, snake);
+//Update du score
+scoreGame = snakeclass.updateScore(headSnake, applePosition, scoreGame);
 
 //Si le snake mange la pomme on la fait spawn a une nouvelle position
 if(spawnApple)
@@ -91,6 +95,8 @@ spawnApple = false;
   gameOver = snakeclass.toucheBorder(headSnake, canvas);
   //Vérifie si le snake touche son corps
   gameOver1 = snakeclass.toucheBody(headSnake, snake);
+   //Affiche le score
+   playground.drawScore(scoreGame);
   //Affichage du snake
   playground.drawSnake(snake, gridSize);
   //Affichage de la pomme
@@ -108,7 +114,7 @@ return;
 
 window.addEventListener('keydown', handleKeyPress);
 
-  // Rafraichit à chaque seconde
+  // Rafraichit à chaque seconde (rapidité d'affichage)
   setTimeout(() => {
     requestAnimationFrame(move);
   }, snakeclass.speed);

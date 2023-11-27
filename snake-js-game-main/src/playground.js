@@ -41,6 +41,14 @@ for(let i = 1; i < snake.length; i++)
       this.ctx.fillText('Game Over', 270, 380);
     }
 
+    // Affiche le score
+    drawScore(scoreGame)
+    {
+      this.ctx.fillStyle = 'White';
+      this.ctx.font = '30px Arial';
+      this.ctx.fillText('Score :'+ ' ' + scoreGame, 25, 40);
+    }
+
     
 }
 

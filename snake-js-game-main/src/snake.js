@@ -7,6 +7,7 @@ class Snake{
     this.numBody = numBody;
   }
 
+  // Déplacement du snake
   moveSnake(headSnake, direction, snake, gridSize)
   {
     //On stock la position de la tete du snake
@@ -72,14 +73,28 @@ snake[0].y = positionHead.y;
   // Vérifie si la tete du snake mange la pomme
   eatApple(applePosition, headSnake, snake)
   {
-    //On vérifi si la position de la tete est égal a la postion de la pomme
+    //On vérifie si la position de la tete est égal a la postion de la pomme
     if (headSnake.x == applePosition.x && headSnake.y === applePosition.y) 
     {
       //Ajout d'une nouvelle partie au corps du snake
       snake.push({ x: headSnake.x, y: headSnake.y });
+      //Augmente le score
       return true;
+  
     }
     return false;
+  }
+  
+  // Vérifie si la tete du snake mange la pomme
+  updateScore(applePosition, headSnake, scoreGame)
+  {
+    //On vérifie si la position de la tete est égal a la postion de la pomme
+    if (headSnake.x == applePosition.x && headSnake.y === applePosition.y) 
+    {
+      //Augmente le score
+      scoreGame +=1;
+    }
+    return scoreGame;
   }
 }
 
