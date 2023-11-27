@@ -13,7 +13,7 @@ const snake = [];
 let applePosition = { x: 0, y: 0 };
 //Dimension d'une case de notre grilless
 // Score de la partie
-let scoreGame = -1;
+let scoreGame = 0;
 const gridSize = 40;
 //Direction du snake
 let direction ='Right';
