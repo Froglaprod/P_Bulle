@@ -11,14 +11,14 @@ class Playground{
     drawSnake(snake, gridSize)
     {
           // Dessine la tete du serpent à une position définit
-          this.ctx.fillStyle = '#00FF99';
+          this.ctx.fillStyle = '#3C69D9';
           this.ctx.fillRect(snake[0].x , snake[0].y , gridSize, gridSize);
 
           // Dessine le corps du serpent à une position définit
           //Boucle qui permet de parourir chaque partie du serpent sauf la tete (slice(1))
 for(let i = 1; i < snake.length; i++) 
   {
-    this.ctx.fillStyle = '#00CC33';
+    this.ctx.fillStyle = '#4E7CF6';
     this.ctx.fillRect(snake[i].x , snake[i].y , gridSize, gridSize);
   }
             
@@ -35,17 +35,45 @@ for(let i = 1; i < snake.length; i++)
     drawGameOver()
     {
       // Si le jeu est fini on affiche game over
-      this.ctx.fillStyle = 'Red';
+      this.ctx.fillStyle = '#2754dd ';
       this.ctx.font = '50px Arial';
-      this.ctx.fillText('Game Over', 270, 380);
+      this.ctx.fillText('Game Over', 270, 400);
     }
 
     // Affiche le score
-    drawScore(scoreGame)
+    drawScore(scoreGame, appleImage, gridSize)
     {
       this.ctx.fillStyle = 'White';
       this.ctx.font = '30px Arial';
-      this.ctx.fillText('Score :'+ ' ' + scoreGame, 25, 40);
+      this.ctx.drawImage(appleImage, 25, 10, gridSize, gridSize);
+      this.ctx.fillText(': '+ scoreGame, 70, 42);
+    }
+
+    // Dessine la grille du jeu et le terrain
+    drawGrid(gridSize)
+    {
+      // Dimension du terrain de jeu
+      this.ctx.fillRect(0, 0, 800, 800);
+
+      // Place la couleur sur chaque carreaux de la grille
+      for (let x =0; x < this.canvas.width; x += gridSize)
+      {
+        for (let y =0; y < this.canvas.height; y += gridSize)
+        {
+          // On ajoute les une couleurs différentes en fonction de si la case est paire ou impaire
+          if((x / gridSize + y / gridSize) % 2 == 0)
+          {
+            this.ctx.fillStyle = '#AAD751';
+          }
+          else
+          {
+            this.ctx.fillStyle = '#A2D149';
+          }
+          
+          // Dessine la grille
+          this.ctx.fillRect(x, y, gridSize, gridSize);
+        }
+      }
     }
 
     

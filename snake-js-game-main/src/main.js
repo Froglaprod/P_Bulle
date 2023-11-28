@@ -82,8 +82,7 @@ function handleKeyPress(event) {
 const move = () => {
 
   // Dessine la grille de jeu
-  ctx.fillStyle = 'black';
-  ctx.fillRect(0, 0, 800, 800);
+  playground.drawGrid(gridSize);
 
 //Vérifie si le snake mange la pomme
 spawnApple = snakeclass.eatApple(headSnake, applePosition, snake);
@@ -105,7 +104,7 @@ spawnApple = false;
   //Vérifie si le snake touche son corps
   gameOver1 = snakeclass.toucheBody(headSnake, snake);
    //Affiche le score
-   playground.drawScore(scoreGame);
+   playground.drawScore(scoreGame, appleImage, gridSize);
   //Affichage du snake
   playground.drawSnake(snake, gridSize);
   //Affichage de la pomme
