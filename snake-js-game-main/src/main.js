@@ -23,6 +23,8 @@ let gameOver = false;
 let gameOver1 = false;
 //Savoir si on spawn une pomme
 let spawnApple = true;
+//Savoir si on est dans le menu
+let menu = true;
 
 //Instantiation des objets
 // Le playground
@@ -77,6 +79,11 @@ function handleKeyPress(event) {
       break;
   }
 }
+
+/*while(menu)
+{
+  playground.drawGrid(gridSize);
+}*/
 
 // Terrain de jeux
 const move = () => {

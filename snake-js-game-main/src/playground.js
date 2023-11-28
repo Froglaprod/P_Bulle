@@ -76,6 +76,13 @@ for(let i = 1; i < snake.length; i++)
       }
     }
 
+    // Dessine le menu
+    drawMenu()
+    {
+      // Dimension du terrain de jeu
+      this.ctx.fillRect(0, 0, 800, 800);
+      this.ctx.fillStyle = '#A2D149';
+    }
     
 }
 
