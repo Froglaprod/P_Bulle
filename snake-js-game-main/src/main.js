@@ -2,6 +2,8 @@ import '../css/style.css';
 import Snake from '/src/snake';
 import Playground from '/src/playground';
 import Apple from '/src/apple';
+
+//Terrain de jeux
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
@@ -24,7 +26,7 @@ let gameOver1 = false;
 //Savoir si on spawn une pomme
 let spawnApple = true;
 //Savoir si on est dans le menu
-let menu = true;
+let gameStarted = false;
 
 //Instantiation des objets
 // Le playground
@@ -35,17 +37,44 @@ let snakeclass = new Snake(3, 120);
 let apple = new Apple();
 // Image de la pomme
 let appleImage = new Image();
-
 // Chemin de l'image
 appleImage.src = '/image/apple1.png';
+// Image du titre
+let titleImage = new Image();
+// Chemin de l'image
+titleImage.src = '/image/Title.png';
 
+// Si on appuie sur entrer on lance le jeu
+function StartGameandController(event) 
+{
+if(event.key == 'Enter')
+{
+  gameStarted = true
+  //On efface le canvas
+  playground.clearCanvas();
+};
+}
+// On écoute les touches du clavier
+window.addEventListener('keydown', StartGameandController);
+
+//Menu 
+if(!gameStarted)
+{
+//Affichage du menu
+playground.drawMenu(titleImage);
+}
+
+//Lancement du jeu
+if(gameStarted)
+{
 //Boucle qui creer les partie du corps du snake
 for (let i = 0; i < snakeclass.numBody; i++) {
   // Ajout une partie du corps et retourne la nouvelle taille du snake
   snake.push({ x: headSnake.x, y: headSnake.y });
 }
+
 // Déplacement du snake par l'utilisateur
-function handleKeyPress(event) {
+function GameController(event) {
 
   //Entrer des touches et de la direction à accorder (on ne peux pas accorder la direction si elle est opposée)
   switch (event.key) {
@@ -79,11 +108,8 @@ function handleKeyPress(event) {
       break;
   }
 }
-
-/*while(menu)
-{
-  playground.drawGrid(gridSize);
-}*/
+// Ecoute les touches du clavier
+window.addEventListener('keydown', GameController);
 
 // Terrain de jeux
 const move = () => {
@@ -124,11 +150,7 @@ playground.drawGameOver();
 
 //Stop le jeu
 return;
-
 }
-
-window.addEventListener('keydown', handleKeyPress);
-
   // Rafraichit à chaque seconde (rapidité d'affichage)
   setTimeout(() => {
     requestAnimationFrame(move);
@@ -137,3 +159,6 @@ window.addEventListener('keydown', handleKeyPress);
 };
 
 requestAnimationFrame(move);
+}
+
+

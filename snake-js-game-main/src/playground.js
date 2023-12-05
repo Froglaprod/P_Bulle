@@ -7,6 +7,13 @@ class Playground{
         this.ctx = canvas.getContext('2d');
      }
 
+     // Efface le canvas
+     clearCanvas()
+     {
+      // Clear toute la zone indiquée
+      this.ctx.clearRect(0,0,800,800)
+     }
+
     // Dessine le snake
     drawSnake(snake, gridSize)
     {
@@ -52,15 +59,12 @@ for(let i = 1; i < snake.length; i++)
     // Dessine la grille du jeu et le terrain
     drawGrid(gridSize)
     {
-      // Dimension du terrain de jeu
-      this.ctx.fillRect(0, 0, 800, 800);
-
       // Place la couleur sur chaque carreaux de la grille
       for (let x =0; x < this.canvas.width; x += gridSize)
       {
         for (let y =0; y < this.canvas.height; y += gridSize)
         {
-          // On ajoute les une couleurs différentes en fonction de si la case est paire ou impaire
+          // On ajoute les couleurs différentes en fonction de si la case est paire ou impaire
           if((x / gridSize + y / gridSize) % 2 == 0)
           {
             this.ctx.fillStyle = '#AAD751';
@@ -70,18 +74,22 @@ for(let i = 1; i < snake.length; i++)
             this.ctx.fillStyle = '#A2D149';
           }
           
-          // Dessine la grille
+          // Dessine la grille et le terrain
           this.ctx.fillRect(x, y, gridSize, gridSize);
         }
       }
     }
 
     // Dessine le menu
-    drawMenu()
+    drawMenu(titleImage)
     {
-      // Dimension du terrain de jeu
-      this.ctx.fillRect(0, 0, 800, 800);
+      // Affichage du fond du menu
       this.ctx.fillStyle = '#A2D149';
+      this.ctx.fillRect(0, 0, 800, 800);
+
+      // Affichage du titre
+      this.ctx.drawImage(titleImage, 100, 310, 1000, 1000 );
+
     }
     
 }
