@@ -1,3 +1,10 @@
+﻿///ETML
+///Auteur : Mathis Botteau
+///Date   : 12.12.2023
+///Description : Le but de ce projet est de creer le fameux jeux snake
+///
+
+/// La classe Snake contient tout les actions du serpent, ainsi que ces caractéristiques
 class Snake {
 
   //On donne les valeurs par défault de notre snake

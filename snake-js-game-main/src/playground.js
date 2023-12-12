@@ -1,3 +1,10 @@
+﻿///ETML
+///Auteur : Mathis Botteau
+///Date   : 12.12.2023
+///Description : Le but de ce projet est de creer le fameux jeux snake
+///
+
+/// La classe Playground contient tout les affichages du jeux
 class Playground {
 
   //On définit le context de dessin pour nos affichage

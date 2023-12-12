@@ -1,3 +1,10 @@
+﻿///ETML
+///Auteur : Mathis Botteau
+///Date   : 12.12.2023
+///Description : Le but de ce projet est de creer le fameux jeux snake
+///
+
+/// La classe Main contient tout le terrain de jeux, ainsi que toutes les variables
 import '../css/style.css';
 import Snake from '/src/snake';
 import Playground from '/src/playground';
