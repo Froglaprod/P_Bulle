@@ -33,12 +33,15 @@ class Playground {
     this.ctx.drawImage(appleImage, applePosition.x, applePosition.y, gridSize, gridSize);
   }
 
-  // Dessine game over
+  // Dessine game-over
   drawGameOver() {
-    // Si le jeu est fini on affiche game over
+    // Titre
     this.ctx.fillStyle = '#2754dd ';
     this.ctx.font = '50px Arial';
     this.ctx.fillText('Game Over', 270, 400);
+    // Texte
+    this.ctx.font = '30px Arial';
+    this.ctx.fillText('Appuyer sur "enter" pour relancer une partie', 120, 450);
   }
 
   // Affiche le score
@@ -70,7 +73,7 @@ class Playground {
 
   // Dessine le menu
   drawMenu() {
-    
+
     // Affichage du fond du menu
     this.ctx.fillStyle = '#A2D149';
     this.ctx.fillRect(0, 0, 800, 800);
@@ -90,18 +93,42 @@ class Playground {
     this.ctx.fillStyle = 'white';
     this.ctx.fillRect(200, 40, 400, 4);
 
-     // Affichage du texte
-     this.ctx.fillStyle = '#2754dd';
-     this.ctx.font = '40px Broadway';
-     this.ctx.fillText('Appuyez sur espace pour jouer', 60, 400);
+    // Affichage du texte
+    this.ctx.fillStyle = '#2754dd';
+    this.ctx.font = '40px Broadway';
+    this.ctx.fillText('Appuyez sur espace pour jouer', 60, 400);
 
-     // Affichage du texte ombre
+    // Affichage du texte ombre
 
-     this.ctx.fillStyle = 'white';
-     this.ctx.font = '40px Broadway';
-     this.ctx.fillText('Appuyez sur espace pour jouer', 60, 398);
+    this.ctx.fillStyle = 'white';
+    this.ctx.font = '40px Broadway';
+    this.ctx.fillText('Appuyez sur espace pour jouer', 60, 398);
   }
 
+
+  // Dessine le menu
+  drawMenuGameover() {
+
+    // Affichage du fond du menu
+    this.ctx.fillStyle = '#A2D149';
+    this.ctx.fillRect(0, 0, 800, 800);
+
+    // Affichage du titre
+    this.ctx.fillStyle = '#2754dd';
+    this.ctx.font = '50px Broadway';
+    this.ctx.fillText('Snake Game', 230, 100);
+
+    // Affichage du texte
+    this.ctx.fillStyle = '#2754dd';
+    this.ctx.font = '40px Broadway';
+    this.ctx.fillText('Game Over', 60, 400);
+    this.ctx.fillText('Game Over', 60, 400);
+
+    // Affichage du texte ombre
+    this.ctx.fillStyle = 'white';
+    this.ctx.font = '40px Broadway';
+    this.ctx.fillText('Appuyez sur espace pour jouer', 60, 398);
+  }
 
 }
 

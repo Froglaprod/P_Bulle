@@ -11,6 +11,7 @@ class Snake {
     //On stock la position de la tete du snake
     const positionHead = { x: headSnake.x, y: headSnake.y };
 
+    //On déplace la tete du snake en fonction de la direction
     switch (direction) {
       case 'Up':
         headSnake.y -= gridSize;

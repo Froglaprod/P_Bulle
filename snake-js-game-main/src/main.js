@@ -7,12 +7,8 @@ import Apple from '/src/apple';
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
-//Position x et y de la tete du snake 
-const headSnake = { x: 0, y: 0 };
 //Tableau qui stock chaque partie du corps du snake
 const snake = [];
-//Position de la pomme
-let applePosition = { x: 0, y: 0 };
 //Dimension d'une case de notre grilless
 // Score de la partie
 let scoreGame = 0;
@@ -29,6 +25,10 @@ let spawnApple = true;
 let gameStarted = false;
 
 //Instantiation des objets
+//Position de la pomme
+let applePosition = { x: 0, y: 0 };
+//Position x et y de la tete du snake 
+const headSnake = { x: 0, y: 0 };
 // Le playground
 let playground = new Playground(canvas);
 // Le serpent
@@ -40,74 +40,67 @@ let appleImage = new Image();
 // Chemin de l'image
 appleImage.src = '/image/apple1.png';
 
-// On écoute les touches du clavier
-window.addEventListener('keydown', StartGameandController);
+// Déplacement du snake par l'utilisateur
+document.addEventListener('keydown', function (event) {
 
-// Si on appuie sur entrer on lance le jeu
-function StartGameandController(event) {
-  // Quand on appuie sur espace on lance le jeu
-  if (event.key == ' ' && !gameStarted) {
-    gameStarted = true;
-    console.log(gameStarted);
+  //Entrer des touches et de la direction à accorder (on ne peux pas accorder la direction si elle est opposée)
+  switch (event.key) {
+
+    case 'w':
+      if (direction != 'Down') {
+        direction = 'Up'
+      }
+      break;
+
+    case 's':
+      if (direction != 'Up') {
+        direction = 'Down'
+      }
+      break;
+
+    case 'a':
+      if (direction != 'Right') {
+        direction = 'Left'
+      }
+      break;
+
+    case 'd':
+      if (direction != 'Left') {
+        direction = 'Right'
+      }
+      break;
+
+    case ' ':
+      // Si on appuie sur espace et que le jeu n'est pas lancé on lance le jeu
+      if (!gameStarted) {
+        gameStarted = true;
+      }
+
+      // Si on appuie sur entrer et que le jeu est fini on relance le jeu
+      if (gameOver || gameOver1) {
+        // Relance le jeu
+        location.reload();
+      }
+      break;
 
   }
+})
+
+//Boucle qui creer les partie du corps du snake
+for (let i = 0; i < snakeclass.numBody; i++) {
+  // Ajout une partie du corps et retourne la nouvelle taille du snake
+  snake.push({ x: headSnake.x, y: headSnake.y });
 }
 
-//Menu 
-if (!gameStarted) 
-{
-  //Affichage du menu
-  playground.drawMenu();
-}
-
-
-// Terrain de jeux
 const move = () => {
-  
+  //Menu 
+  if (!gameStarted) {
+    //Affichage du menu
+    playground.drawMenu();
+  }
+
   //Lancement du jeu
   if (gameStarted) {
-    //Boucle qui creer les partie du corps du snake
-    for (let i = 0; i < snakeclass.numBody; i++) {
-      // Ajout une partie du corps et retourne la nouvelle taille du snake
-      snake.push({ x: headSnake.x, y: headSnake.y });
-    }
-
-    // Déplacement du snake par l'utilisateur
-    function GameController(event) {
-
-      //Entrer des touches et de la direction à accorder (on ne peux pas accorder la direction si elle est opposée)
-      switch (event.key) {
-
-        case 'w':
-          if (direction != 'Down') {
-            direction = 'Up'
-          }
-          break;
-
-        case 's':
-          if (direction != 'Up') {
-            direction = 'Down'
-          }
-          break;
-
-        case 'a':
-          if (direction != 'Right') {
-            direction = 'Left'
-          }
-          break;
-
-        case 'd':
-          if (direction != 'Left') {
-            direction = 'Right'
-          }
-          break;
-      }
-    }
-    // Ecoute les touches du clavier
-    window.addEventListener('keydown', GameController);
-
-
-
 
     // Dessine la grille de jeu
     playground.drawGrid(gridSize);
@@ -140,19 +133,19 @@ const move = () => {
     if (gameOver || gameOver1) {
       //Affichage du game over
       playground.drawGameOver();
-
       //Stop le jeu
       return;
     }
-    // Rafraichit à chaque seconde (rapidité d'affichage)
-    setTimeout(() => {
-        requestAnimationFrame(move);
-   // Vitesse
-    }, snakeclass.speed);
 
   };
 
-  requestAnimationFrame(move);
+  // Rafraichit à chaque seconde (rapidité d'affichage)
+  setTimeout(() => {
+    requestAnimationFrame(move);
+    // Vitesse
+  }, snakeclass.speed);
 }
+requestAnimationFrame(move);
+
 
 
