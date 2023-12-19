@@ -4,7 +4,7 @@
 ///Description : Le but de ce projet est de creer le fameux jeux snake
 ///
 
-/// La classe Main contient tout le terrain de jeux, ainsi que toutes les variables
+/// La classe Main contient tout le terrain de jeu, ainsi que toutes les déclaration des variables
 import '../css/style.css';
 import Snake from '/src/snake';
 import Playground from '/src/playground';
@@ -16,9 +16,9 @@ const ctx = canvas.getContext('2d');
 
 //Tableau qui stock chaque partie du corps du snake
 const snake = [];
-//Dimension d'une case de notre grilless
 // Score de la partie
 let scoreGame = 0;
+//Dimension d'une case de notre grille
 const gridSize = 40;
 //Direction du snake
 let direction = 'Right';

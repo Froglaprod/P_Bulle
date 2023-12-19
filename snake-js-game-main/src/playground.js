@@ -48,7 +48,7 @@ class Playground {
     this.ctx.fillText('Game Over', 270, 400);
     // Texte
     this.ctx.font = '30px Arial';
-    this.ctx.fillText('Appuyer sur "enter" pour relancer une partie', 120, 450);
+    this.ctx.fillText('Appuyer sur "espace" pour relancer une partie', 120, 450);
   }
 
   // Affiche le score
