@@ -76,7 +76,6 @@ class Snake {
     if (headSnake.x == applePosition.x && headSnake.y === applePosition.y) {
       //Ajout d'une nouvelle partie au corps du snake
       snake.push({ x: headSnake.x, y: headSnake.y });
-      //Augmente le score
       return true;
 
     }
