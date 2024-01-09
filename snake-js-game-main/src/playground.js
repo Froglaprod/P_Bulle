@@ -112,31 +112,6 @@ class Playground {
     this.ctx.fillText('Appuyez sur espace pour jouer', 60, 398);
   }
 
-
-  // Dessine le menu
-  drawMenuGameover() {
-
-    // Affichage du fond du menu
-    this.ctx.fillStyle = '#A2D149';
-    this.ctx.fillRect(0, 0, 800, 800);
-
-    // Affichage du titre
-    this.ctx.fillStyle = '#2754dd';
-    this.ctx.font = '50px Broadway';
-    this.ctx.fillText('Snake Game', 230, 100);
-
-    // Affichage du texte
-    this.ctx.fillStyle = '#2754dd';
-    this.ctx.font = '40px Broadway';
-    this.ctx.fillText('Game Over', 60, 400);
-    this.ctx.fillText('Game Over', 60, 400);
-
-    // Affichage du texte ombre
-    this.ctx.fillStyle = 'white';
-    this.ctx.font = '40px Broadway';
-    this.ctx.fillText('Appuyez sur espace pour jouer', 60, 398);
-  }
-
 }
 
 export default Playground;
